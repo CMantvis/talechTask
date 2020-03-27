@@ -3,10 +3,10 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ProductProvider } from "./ProductContext";
 import ProductsList from "./components/ProductsList";
-import NavBar from "./components/NavBar"
-import HomePage from "./components/HomePage"
-import AddProduct from "./components/AddProduct"
-import ProductView from "./components/ProductView"
+import NavBar from "./components/NavBar";
+import HomePage from "./components/HomePage";
+import AddProduct from "./components/AddProduct";
+import ProductView from "./components/ProductView";
 import EditProduct from './components/EditProduct';
 
 function App() {
