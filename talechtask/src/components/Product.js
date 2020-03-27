@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ProductContext } from "../ProductContext";
-
+import {Link } from "react-router-dom"
 function Product({ name, EAN, type, weight, color, active }) {
 
     const [products, setProducts] = useContext(ProductContext);
@@ -13,8 +13,8 @@ function Product({ name, EAN, type, weight, color, active }) {
         <div>
             <p>{name} {EAN} {type} {weight} {color}
                 <input type="checkbox" />
-                <button>VIEW</button>
-                <button>EDIT</button>
+                <Link to={`/products/${EAN}`}><button>VIEW</button></Link>
+                <Link to={`/products/${EAN}/edit`}><button>EDIT</button></Link>
                 <button onClick={() => handleDelete(EAN)} >DELETE</button>
             </p>
 
