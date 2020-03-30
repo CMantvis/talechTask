@@ -16,11 +16,11 @@ function App() {
       <ProductProvider>
         <div className="container">
           <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/products" exact component={ProductsList} />
-            <Route path="/products/create" exact component={AddProduct} />
-            <Route path="/products/:EAN" exact component={ProductView}/>
-            <Route path="products/:EAN/edit" component={EditProduct} />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/products" component={ProductsList} />
+            <Route exact path="/products/create" component={AddProduct} />
+            <Route exact strict path="/products/:slug" component={ProductView} />
+            <Route exact strict path="/products/:slug/edit" component={EditProduct} />
           </Switch>
         </div>
       </ProductProvider>

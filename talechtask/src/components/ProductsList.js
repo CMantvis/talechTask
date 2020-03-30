@@ -4,7 +4,6 @@ import Product from "./Product";
 
 function ProductsList() {
     const [products, setProducts] = useContext(ProductContext);
-    console.log(products);
     return (
         <div>
             {

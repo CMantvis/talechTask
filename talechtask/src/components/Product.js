@@ -14,7 +14,7 @@ function Product({ name, EAN, type, weight, color, active }) {
             <p>{name} {EAN} {type} {weight} {color}
                 <input type="checkbox" />
                 <Link to={`/products/${EAN}`}><button>VIEW</button></Link>
-                <Link to={`/products/${EAN}/edit`}><button>EDIT</button></Link>
+                <Link to={`/products/${name}/edit`}><button>EDIT</button></Link>
                 <button onClick={() => handleDelete(EAN)} >DELETE</button>
             </p>
 
