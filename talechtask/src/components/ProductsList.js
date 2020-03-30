@@ -1,18 +1,48 @@
 import React, { useContext } from 'react';
 import { ProductContext } from "../ProductContext";
-import Product from "./Product";
+import { Link } from "react-router-dom";
+import "../styles/ProductTable.css"
 
 function ProductsList() {
     const [products, setProducts] = useContext(ProductContext);
+
+    const handleDelete = EAN => {
+        setProducts([...products.filter(product => product.EAN !== EAN)])
+    }
+
+    const tableBody = () => {
+        return products.map(product => (
+            <tr key={product.EAN}>
+                <td>{product.name}</td>
+                <td>{product.EAN}</td>
+                <td>{product.type}</td>
+                <td>{product.weight}</td>
+                <td>{product.color}</td>
+                <td><input className="active" type="checkbox" /></td>
+                <td>
+                    <Link to={`/products/${product.EAN}`}><button className="view-btn">VIEW</button></Link>
+                    <Link to={`/products/${product.EAN}/edit`}><button className="edit-btn">EDIT</button></Link>
+                    <button onClick={() => handleDelete(product.EAN)} className="delete-btn">DELETE</button>
+                </td>
+            </tr>
+        ))
+    }
+
+    const tableHeader = () => {
+        let header = Object.keys(products[0])
+        return header.map((key, index) => (
+            <th key={index}>{key.toUpperCase()}</th>
+        ))
+    }
+
     return (
         <div>
-            {
-                products.map(product => (
-                    <Product key={product.EAN} EAN={product.EAN} name={product.name} type={product.type}
-                        weight={product.weight} color={product.color} active={product.active}
-                    />
-                ))
-            }
+            <table id="products">
+                <tbody>
+                    <tr>{tableHeader()}</tr>
+                    {tableBody()}
+                </tbody>
+            </table>
         </div>
     )
 }

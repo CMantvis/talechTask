@@ -1,0 +1,26 @@
+
+
+.navBar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 150px;
+    background: rgb(108, 110, 110);
+    color: white;
+}
+
+.nav-links {
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+h3 {
+    margin-left: 50px;
+}
+
+.nav-links li:hover {
+    color: black;
+}

@@ -1,5 +1,6 @@
 import React, { useReducer, useContext } from "react";
 import { ProductContext } from "../ProductContext";
+import "../styles/NewProductStyle.css"
 
 const initialState = {
     name: "",
@@ -24,7 +25,7 @@ function AddProduct() {
     const [products, setProducts] = useContext(ProductContext)
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { name, EAN, type, weight, color, active } = state;
+    const { name, EAN, type, weight, color} = state;
 
     const onChange = e => {
         const { name, value } = e.target;
@@ -39,6 +40,7 @@ function AddProduct() {
 
     return (
         <div>
+                <h3>Fill the required fields</h3>
             <form onSubmit={addProduct}>
                 <input
                     type="text"

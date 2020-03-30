@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import { ProductContext } from "../ProductContext";
 import {Link } from "react-router-dom"
-function Product({ name, EAN, type, weight, color, active }) {
+function Product(props) {
+
+    const {name,EAN,type,weight,color,active} = props.product
 
     const [products, setProducts] = useContext(ProductContext);
 
@@ -9,7 +11,14 @@ function Product({ name, EAN, type, weight, color, active }) {
         setProducts([...products.filter(product => product.EAN !== EAN)])
     }
 
+    const dusknx = () => {
+        return (
+            <p>hey</p>
+        )
+    }
+
     return (
+        
         <div>
             <p>{name} {EAN} {type} {weight} {color}
                 <input type="checkbox" />
@@ -17,7 +26,7 @@ function Product({ name, EAN, type, weight, color, active }) {
                 <Link to={`/products/${name}/edit`}><button>EDIT</button></Link>
                 <button onClick={() => handleDelete(EAN)} >DELETE</button>
             </p>
-
+            {dusknx()}
         </div>
     )
 }

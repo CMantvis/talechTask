@@ -4,7 +4,7 @@ export const ProductContext = createContext();
 
 export const ProductProvider = props => {
 
-    const data = [
+    const defaultData = [
         {
             name: "Banana",
             EAN: 12345,
@@ -39,16 +39,13 @@ export const ProductProvider = props => {
         }
     ];
 
-    console.log(Object.keys(data[0]))
-
-    const initialData = window.localStorage.getItem("products");
-    const ParsedData = JSON.parse(initialData);
-    const [products, setProducts] = useState(ParsedData);
+    const initialData = JSON.parse(window.localStorage.getItem("products"));
+    const [products, setProducts] = useState(initialData || defaultData);
 
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(products))
     }, [products]);
-
+    
     return (
         <ProductContext.Provider value={[products, setProducts]}>
             {props.children}
