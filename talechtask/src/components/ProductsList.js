@@ -20,8 +20,8 @@ function ProductsList() {
                 <td>{product.color}</td>
                 <td><input className="active" type="checkbox" /></td>
                 <td>
-                    <Link to={`/products/${product.EAN}`}><button className="view-btn">VIEW</button></Link>
-                    <Link to={`/products/${product.EAN}/edit`}><button className="edit-btn">EDIT</button></Link>
+                    <Link to={`/products/${product.id}`}><button className="view-btn">VIEW</button></Link>
+                    <Link to={`/products/${product.id}/edit`}><button className="edit-btn">EDIT</button></Link>
                     <button onClick={() => handleDelete(product.EAN)} className="delete-btn">DELETE</button>
                 </td>
             </tr>

@@ -1,52 +1,43 @@
-import React, { useReducer, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ProductContext } from "../ProductContext";
 import "../styles/NewProductStyle.css"
 
-const initialState = {
-    name: "",
-    EAN: "",
-    type: "",
-    weight: "",
-    color: "",
-    active: false
-};
-
-const reducer = (state, action) => {
-    if (action.type === "reset") {
-        return initialState;
-    }
-
-    const result = { ...state };
-    result[action.type] = action.value;
-    return result;
-};
-
 function AddProduct() {
     const [products, setProducts] = useContext(ProductContext)
-
-    const [state, dispatch] = useReducer(reducer, initialState);
-    const { name, EAN, type, weight, color} = state;
+    
+    const initialState = {
+        name: "",
+        EAN: "",
+        type: "",
+        weight: "",
+        color: "",
+        active: false,
+        id: products.length+1
+    };
+    const [input, setInput] = useState(initialState)
 
     const onChange = e => {
         const { name, value } = e.target;
-        dispatch({ type: name, value });
-    };
+        setInput({ ...input, [name]: value })
+    }
 
-    const addProduct = e => {
-        e.preventDefault();
-        setProducts([...products, state])
-        dispatch({ type: "reset" });
-    };
+    const addProduct = product => {
+        setProducts([...products, product])
+    }
 
     return (
         <div>
-                <h3>Fill the required fields</h3>
-            <form onSubmit={addProduct}>
+            <h3>Fill the required fields</h3>
+            <form onSubmit={event => {
+                event.preventDefault()
+                addProduct(input)
+                setInput(initialState)
+            }}>
                 <input
                     type="text"
                     placeholder="Product Name"
                     name="name"
-                    value={name}
+                    value={input.name}
                     onChange={onChange}
                 />
 
@@ -54,7 +45,7 @@ function AddProduct() {
                     type="text"
                     placeholder="Product EAN"
                     name="EAN"
-                    value={EAN}
+                    value={input.EAN}
                     onChange={onChange}
                 />
 
@@ -62,7 +53,7 @@ function AddProduct() {
                     type="text"
                     placeholder="Product Type"
                     name="type"
-                    value={type}
+                    value={input.type}
                     onChange={onChange}
                 />
 
@@ -70,7 +61,7 @@ function AddProduct() {
                     type="number"
                     placeholder="Product Weight asdasd"
                     name="weight"
-                    value={weight}
+                    value={input.weight}
                     onChange={onChange}
                 />
 
@@ -78,7 +69,7 @@ function AddProduct() {
                     type="text"
                     placeholder="Product Color"
                     name="color"
-                    value={color}
+                    value={input.color}
                     onChange={onChange}
                 />
                 <button>Add</button>

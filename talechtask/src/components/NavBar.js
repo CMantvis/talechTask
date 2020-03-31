@@ -11,7 +11,7 @@ function NavBar() {
 
     return (
         <nav className="navBar">
-            <h3>LOGO PLACEHOLDER</h3>
+            <Link style={linkStyle} to="/"><h3>LOGO PLACEHOLDER</h3></Link>
             <ul className="nav-links">
                 <Link style={linkStyle} to="/">
                     <li>Home</li>

@@ -11,7 +11,8 @@ export const ProductProvider = props => {
             type: "Fruit",
             weight: 100,
             color: "Yellow",
-            active: false
+            active: false,
+            id:1
         },
         {
             name: "Apple",
@@ -19,7 +20,8 @@ export const ProductProvider = props => {
             type: "Fruit",
             weight: 60,
             color: "Red",
-            active: false
+            active: false,
+            id:2
         },
         {
             name: "Chair",
@@ -27,7 +29,8 @@ export const ProductProvider = props => {
             type: "Furniture",
             weight: 1500,
             color: "Brown",
-            active: false
+            active: false,
+            id:3
         },
         {
             name: "Desk",
@@ -35,7 +38,8 @@ export const ProductProvider = props => {
             type: "Furniture",
             weight: 6800,
             color: "Black",
-            active: false
+            active: false,
+            id:4
         }
     ];
 
