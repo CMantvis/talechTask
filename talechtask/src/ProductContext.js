@@ -11,6 +11,10 @@ export const ProductProvider = props => {
             type: "Fruit",
             weight: 100,
             color: "Yellow",
+            quantity: 100,
+            quantityHistory: [100],
+            price: 2,
+            priceHistory: [],
             active: false,
             id:1
         },
@@ -20,6 +24,10 @@ export const ProductProvider = props => {
             type: "Fruit",
             weight: 60,
             color: "Red",
+            quantity: 1000,
+            quantityHistory: [1000],
+            price: 1.5,
+            priceHistory: [],
             active: false,
             id:2
         },
@@ -29,6 +37,10 @@ export const ProductProvider = props => {
             type: "Furniture",
             weight: 1500,
             color: "Brown",
+            quantity: 5,
+            quantityHistory: [5],
+            price: 200,
+            priceHistory: [],
             active: false,
             id:3
         },
@@ -38,6 +50,10 @@ export const ProductProvider = props => {
             type: "Furniture",
             weight: 6800,
             color: "Black",
+            quantity: 16,
+            quantityHistory: [16],
+            price: 150,
+            priceHistory: [],
             active: false,
             id:4
         }

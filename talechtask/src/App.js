@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage";
 import AddProduct from "./components/AddProduct";
 import ProductView from "./components/ProductView";
 import EditProduct from './components/EditProduct';
+import ErrorPage from "./components/ErrorPage"
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/products" component={ProductsList} />
             <Route exact path="/products/create" component={AddProduct} />
-            <Route exact strict path="/products/:slug" component={ProductView} />
-            <Route exact strict path="/products/:slug/edit" component={EditProduct} />
+            <Route exact path="/products/:slug" component={ProductView} />
+            <Route exact path="/products/:slug/edit" component={EditProduct} />
+            <Route exact path="/not-found" component={ErrorPage} />
           </Switch>
         </div>
       </ProductProvider>
