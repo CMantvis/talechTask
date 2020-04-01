@@ -23,26 +23,37 @@ function ProductsList() {
         backgroundColor: "#DF1010",
     }
 
+    const btnStyle = {
+        width:"63px"
+    }
+
     const tableBody = () => {
         return products.map(product => (
-            <tr key={product.id} style={product.quantity > 0 ? null : noProductStyle}>
+            <tr key={product.id} >
                 <td>{product.name}</td>
                 <td>{product.EAN}</td>
                 <td>{product.type}</td>
                 <td>{product.weight}</td>
                 <td>{product.color}</td>
-                <td>{product.quantity}</td>
+                <td style={product.quantity > 0 ? null : noProductStyle}>{product.quantity}</td>
                 <td>{product.price}</td>
                 <td>
                     <input className="active"
                         type="checkbox"
+                        style={{height:"18px",width:"18px"}}
                         onChange={() => handleActive(product.id)}
                         checked={product.active && true} />
                 </td>
                 <td>
-                    <Link to={`/products/${product.id}`}><button className="btn btn-secondary btn-sm"> type="button">VIEW</button></Link>
-                    <Link to={`/products/${product.id}/edit`}><button className="edit-btn">EDIT</button></Link>
-                    <button onClick={() => handleDelete(product.id)} className="delete-btn">DELETE</button>
+                    <div >
+                    <Link to={`/products/${product.id}`}>
+                        <button type="button" className="btn btn-secondary btn-sm" style={btnStyle}>VIEW</button>
+                        </Link>
+                    <Link to={`/products/${product.id}/edit`}>
+                        <button type="button" className="btn btn-primary btn-sm" style={btnStyle}>EDIT</button>
+                        </Link>
+                    <button onClick={() => handleDelete(product.id)} type="button"className="btn btn-danger btn-sm">DELETE</button>
+                    </div>
                 </td>
             </tr>
         ))
@@ -64,8 +75,8 @@ function ProductsList() {
     }
 
     return (
-        <div>
-            <table id="products">
+        <div className="table-responsive-sm">
+            <table className="table table-hover">
                 <tbody>
                     <tr>{tableHeader()}</tr>
                     {tableBody()}

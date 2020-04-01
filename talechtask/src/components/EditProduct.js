@@ -40,7 +40,9 @@ function EditProduct({ match }) {
 
     return (
         <div>
-            <form onSubmit={() => {
+            <form 
+            style={{width:"400px",margin:"auto"}}
+            onSubmit={() => {
                 handleSubmit(changeValue);
             }}>
                 <InputForm
@@ -53,7 +55,11 @@ function EditProduct({ match }) {
                     price={price}
                     handleChange={handleChange}
                 />
-                <button type="button" className="btn btn-primary" onClick={handleHistory}>Save</button>
+                <button type="button" 
+                className="btn btn-primary" 
+                style={{marginTop:"25px"}}
+                onClick={handleHistory}>Save Changes
+                </button>
             </form>
         </div>
     )

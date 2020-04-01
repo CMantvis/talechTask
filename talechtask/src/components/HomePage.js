@@ -2,8 +2,8 @@ import React from 'react';
 
 function HomePage() {
     return (
-        <div>
-            This is The HOME PAGE
+        <div >
+            <h1 style={{textAlign:"center"}}>HOME PAGE</h1>
         </div>
     )
 }

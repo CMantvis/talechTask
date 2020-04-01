@@ -13,12 +13,12 @@ function AddProduct() {
         color: "",
         quantity: "",
         price: "",
-        active: false,
+        active: true,
         id: products.length + 1
     };
 
     const [input, setInput] = useState(initialState);
-    const { name, EAN, type, weight, color, quantity, price, id } = input;
+    const { name, EAN, type, weight, color, quantity, price} = input;
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -30,7 +30,9 @@ function AddProduct() {
     }
 
     return (
-        <form onSubmit={event => {
+        <form
+        style={{width:"400px",margin:"auto"}} 
+        onSubmit={event => {
             event.preventDefault();
             addProduct(input);
             setInput(initialState);
@@ -45,7 +47,7 @@ function AddProduct() {
                 price={price}
                 handleChange={handleChange}
             />
-            <button>add</button>
+            <button type="submit" className="btn btn-success" style={{marginTop:"25px"}}>Add product</button>
         </form>
     )
 }
