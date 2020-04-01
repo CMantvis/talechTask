@@ -1,28 +1,26 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import "../styles/NavStyle.css"
+// import "../styles/NavStyle.css"
 
 function NavBar() {
-
-    const linkStyle = {
-        color: "white",
-        textDecoration: "none"
-    }
-
     return (
-        <nav className="navBar">
-            <Link style={linkStyle} to="/"><h3>LOGO PLACEHOLDER</h3></Link>
-            <ul className="nav-links">
-                <Link style={linkStyle} to="/">
-                    <li>Home</li>
-                </Link>
-                <Link style={linkStyle} to="/products">
-                    <li>List</li>
-                </Link>
-                <Link style={linkStyle} to="/products/create">
-                <li>New</li>
-                </Link>
-            </ul>
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+            <div className="container-fluid">
+                <Link  to="/"> <h3 className="navbar-brand"> LOGO PLACEHOLDER </h3></Link>
+                <button class="navbar-toggler"
+                    type="button" 
+                    data-toggle="collapse"
+                    data-target="#navbarMenu">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarMenu">
+                    <ul className="navbar-nav ml-auto">
+                            <li className="nav-item"><Link className="nav-link active" to="/">Home </Link></li>
+                            <li className="nav-item"><Link className="nav-link" to="/products">List</Link></li>
+                            <li className="nav-item"><Link className="nav-link" to="/products/create">New</Link></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     )
 }

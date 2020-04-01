@@ -53,7 +53,7 @@ function EditProduct({ match }) {
                     price={price}
                     handleChange={handleChange}
                 />
-                <button onClick={handleHistory}>Save</button>
+                <button type="button" className="btn btn-primary" onClick={handleHistory}>Save</button>
             </form>
         </div>
     )

@@ -40,7 +40,7 @@ function ProductsList() {
                         checked={product.active && true} />
                 </td>
                 <td>
-                    <Link to={`/products/${product.id}`}><button className="view-btn">VIEW</button></Link>
+                    <Link to={`/products/${product.id}`}><button className="btn btn-secondary btn-sm"> type="button">VIEW</button></Link>
                     <Link to={`/products/${product.id}/edit`}><button className="edit-btn">EDIT</button></Link>
                     <button onClick={() => handleDelete(product.id)} className="delete-btn">DELETE</button>
                 </td>
