@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ProductContext } from "../ProductContext";
 import "../styles/NewProductStyle.css";
+import InputForm from "./InputForm";
 
 function AddProduct() {
     const [products, setProducts] = useContext(ProductContext);
@@ -29,78 +30,23 @@ function AddProduct() {
     }
 
     return (
-        <div>
-            <h3>Fill the required fields</h3>
-            <form onSubmit={event => {
-                event.preventDefault();
-                addProduct(input);
-                setInput(initialState);
-            }}>
-                <input
-                    type="text"
-                    required
-                    placeholder="Product Name"
-                    name="name"
-                    value={name}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    required
-                    placeholder="Product EAN"
-                    name="EAN"
-                    value={EAN}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    required
-                    placeholder="Product Type"
-                    name="type"
-                    value={type}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="number"
-                    required
-                    placeholder="Product Weight"
-                    name="weight"
-                    value={weight>0?weight:weight.slice(0,1)}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    required
-                    placeholder="Product Color"
-                    name="color"
-                    value={color}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="number"
-                    required 
-                    placeholder="Product Quantity"
-                    name="quantity"
-                    value={quantity>0?quantity:quantity.slice(0,1)}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="number"
-                    required
-                    placeholder="Product Price"
-                    name="price"
-                    value={price>0?price:price.slice(0,1)}
-                    onChange={handleChange}
-                />
-                <button>Add</button>
-            </form>
-        </div>
+        <form onSubmit={event => {
+            event.preventDefault();
+            addProduct(input);
+            setInput(initialState);
+        }}>
+            <InputForm
+                name={name}
+                EAN={EAN}
+                type={type}
+                weight={weight}
+                color={color}
+                quantity={quantity}
+                price={price}
+                handleChange={handleChange}
+            />
+            <button>add</button>
+        </form>
     )
 }
 

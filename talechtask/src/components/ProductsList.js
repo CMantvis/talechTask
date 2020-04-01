@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 import "../styles/ProductTable.css"
 
 function ProductsList() {
-
     const [products, setProducts] = useContext(ProductContext);
 
     const handleDelete = id => {
         setProducts([...products.filter(product => product.id !== id)])
+    }
+
+    const handleActive = id => {
+        setProducts([...products.map(product => {
+            if (product.id === id) {
+                product.active = !product.active
+            }
+            return product
+        })])
     }
 
     const noProductStyle = {
@@ -25,7 +33,12 @@ function ProductsList() {
                 <td>{product.color}</td>
                 <td>{product.quantity}</td>
                 <td>{product.price}</td>
-                <td><input className="active" type="checkbox" /></td>
+                <td>
+                    <input className="active"
+                        type="checkbox"
+                        onChange={() => handleActive(product.id)}
+                        checked={product.active && true} />
+                </td>
                 <td>
                     <Link to={`/products/${product.id}`}><button className="view-btn">VIEW</button></Link>
                     <Link to={`/products/${product.id}/edit`}><button className="edit-btn">EDIT</button></Link>
