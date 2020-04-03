@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function InputForm(props) {
     return (
@@ -13,7 +13,6 @@ function InputForm(props) {
                 value={props.name}
                 onChange={props.handleChange}
                 className="form-control"
-                
             />
             <label htmlFor="EAN">EAN</label>
             <input
@@ -44,7 +43,7 @@ function InputForm(props) {
                 placeholder="Product Weight"
                 name="weight"
                 id="weight"
-                value={props.weight > 0 ? props.weight : props.weight.slice(0, 1)}
+                value={props.weight}
                 onChange={props.handleChange}
                 className="form-control"
             />
@@ -66,7 +65,7 @@ function InputForm(props) {
                 placeholder="Product Quantity"
                 name="quantity"
                 id="quantity"
-                value={props.quantity > 0 ? props.quantity : props.quantity.slice(0, 1)}
+                value={props.quantity}
                 onChange={props.handleChange}
                 className="form-control"
             />
@@ -77,7 +76,7 @@ function InputForm(props) {
                 placeholder="Product Price"
                 name="price"
                 id="price"
-                value={props.price > 0 ? props.price : props.price.slice(0, 1)}
+                value={props.price}
                 onChange={props.handleChange}
                 className="form-control"
             />
@@ -85,4 +84,4 @@ function InputForm(props) {
     )
 }
 
-export default InputForm
+export default InputForm;

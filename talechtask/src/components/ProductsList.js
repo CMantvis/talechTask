@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import { ProductContext } from "../ProductContext";
 import { Link } from "react-router-dom";
-import "../styles/ProductTable.css"
 
 function ProductsList() {
     const [products, setProducts] = useContext(ProductContext);
-
+    
     const handleDelete = id => {
-        setProducts([...products.filter(product => product.id !== id)])
+        setProducts([...products.filter(product => product.id !== id)]);
     }
 
     const handleActive = id => {
@@ -22,7 +21,7 @@ function ProductsList() {
     const noProductStyle = {
         backgroundColor: "#DF1010",
     }
-
+    
     const btnStyle = {
         width:"63px"
     }
