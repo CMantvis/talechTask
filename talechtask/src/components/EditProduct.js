@@ -7,85 +7,134 @@ function EditProduct({ match }) {
     const productId = match.params.slug;
     const [products, setProducts] = useContext(ProductContext);
     const matchingProduct = products.filter(product => product.id === Number(productId));
-    const [changeValue, setChangeValue] = useState(matchingProduct.length ? matchingProduct[0] : {});
-    const { name, EAN, type, weight, color, quantity, price } = changeValue;
-    const [quantityH, setQuantityH] = useState([]);
     const [quantityDate,setQuantityDate] = useState();
-    const [priceH,setPriceH] = useState([]);
     const [priceDate,setPriceDate] = useState();
+    const [hasPriceChanged, setHasPriceChanged] = useState(false);
+    const [hasQuantityChanged, setHasQuantityChanged] = useState(false)
+    const [name, setName] = useState(matchingProduct.length ? matchingProduct[0].name : {});
+    const [EAN, setEAN] = useState(matchingProduct.length ? matchingProduct[0].EAN : {});
+    const [type, setType] = useState(matchingProduct.length ? matchingProduct[0].type : {});
+    const [weight, setWeight] = useState(matchingProduct.length ? matchingProduct[0].weight : {});
+    const [color, setColor] = useState(matchingProduct.length ? matchingProduct[0].color : {});
+    const [quantity, setQuantity] = useState(matchingProduct.length ? matchingProduct[0].quantity : {});
+    const [price, setPrice] = useState(matchingProduct.length ? matchingProduct[0].price : {});
     
-    useEffect(() => {
-        getQuantityDate();
-    },[quantity])
-
-    useEffect(() => {
-        getPriceDate();
-    },[price])
-
     if (!matchingProduct.length) {
         return <Redirect to="/not-found" push />
     }
 
-    const handleCancel = () => {
-        setChangeValue(...matchingProduct);
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setName(matchingProduct[0].name);
+        setEAN(matchingProduct[0].EAN);
+        setType(matchingProduct[0].type);
+        setWeight(matchingProduct[0].weight);
+        setColor(matchingProduct[0].color);
+        setQuantity(matchingProduct[0].quantity);
+        setPrice(matchingProduct[0].price);
     }
 
     const getPriceDate = () => {
-        let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        let currentDate = new Date().toISOString().slice(0, 10);
         setPriceDate(currentDate);
     }
 
     const getQuantityDate = () => {
-        let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        let currentDate = new Date().toISOString().slice(0, 10);
         setQuantityDate(currentDate);
     }
 
-    const handleHistory = () => {  
-        setChangeValue({ ...changeValue,
-             quantityHistory: [...changeValue.quantityHistory,...quantityH],
-             priceHistory:[...changeValue.priceHistory,...priceH],
-             priceHistoryDate:[...changeValue.priceHistoryDate,priceDate],
-             quantityHistoryDate:[...changeValue.quantityHistoryDate,quantityDate],
-             }) ;
-    } 
-
-    const handleChange = e => {
-        const { name, value } = e.target;
-        if (name === "quantity") {
-            setQuantityH([value]);
-        }
-        if (name ==="price") {
-            setPriceH([value]);
-        }
-        setChangeValue({
-            ...changeValue,
-            [name]: value
-        });
+    const handleName = e => {
+        setName(e.currentTarget.value);
     }
 
-    const handleSubmit = (changeValue) => {
-        setProducts(products.map(product => (product.id === Number(productId) ? changeValue : product)));
+    const handleEAN = e => {
+        setEAN(e.currentTarget.value);
+    }
+
+    const handleType = e => {
+        setType(e.currentTarget.value);
+    }
+
+    const handleWeight = e => {
+        setWeight(e.currentTarget.value);
+    }
+
+    const handleColor = e => {
+        setColor(e.currentTarget.value);
+    }
+
+    const handleQuantity = e => {
+        setQuantity(e.currentTarget.value);
+        getQuantityDate();
+        setHasQuantityChanged(true);
+    }
+
+    const handlePrice = e => {
+        setPrice(e.currentTarget.value);
+        getPriceDate();
+        setHasPriceChanged(true);
+    }
+
+    const handleSubmit = () => {
+        setProducts(products.map(product => (product.id === Number(productId) ? 
+        {name:name,
+        EAN:EAN,
+        type:type,
+        weight:weight,
+        color:color,
+        quantity:quantity,
+        quantityHistory: [...(hasQuantityChanged ?
+            [...matchingProduct[0].quantityHistory,quantity]
+            : matchingProduct[0].quantityHistory
+            )],
+
+        quantityHistoryDate: [... (hasQuantityChanged ? 
+            [...matchingProduct[0].quantityHistoryDate,quantityDate]
+            : matchingProduct[0].quantityHistoryDate)],
+            
+        price:price,
+        priceHistory: [...(hasPriceChanged ?
+            [...matchingProduct[0].priceHistory,price]
+            : matchingProduct[0].priceHistory
+            )],
+
+        priceHistoryDate: [... (hasPriceChanged ? 
+            [...matchingProduct[0].priceHistoryDate,priceDate]
+            : matchingProduct[0].priceHistoryDate)],
+
+        id: matchingProduct[0].id,
+        active: matchingProduct[0].active
+        } 
+        : product)));
+        setHasPriceChanged(false);
+        setHasQuantityChanged(false);
     }
 
     return (
         <div>
             <form 
             style={{width:"400px",margin:"auto"}}
-            onSubmit={() => {
-                handleSubmit(changeValue);
-            }}>
-                <InputForm
-                    name={name}
-                    EAN={EAN}
-                    type={type}
-                    weight={weight}
-                    color={color}
-                    quantity={quantity}
-                    price={price}
-                    handleChange={handleChange}
-                />
+            onSubmit={handleSubmit}
+            >
+            <InputForm
+                name={name}
+                EAN={EAN}
+                type={type}
+                weight={weight}
+                color={color}
+                quantity={quantity}
+                price={price}
+                handleName={handleName}
+                handleEAN={handleEAN}
+                handleType={handleType}
+                handleWeight={handleWeight}
+                handleColor={handleColor}
+                handleQuantity={handleQuantity}
+                handlePrice={handlePrice}
+            />
                 <div className="row" style={{justifyContent:"space-around"}}>
-                <button onClick={handleHistory} className="btn btn-primary" style={{marginTop:"25px"}}>Save</button>
+                <button className="btn btn-primary" style={{marginTop:"25px"}}>Save</button>
                 <button onClick={handleCancel}  className="btn btn-secondary" style={{marginTop:"25px"}}>Cancel</button>
                 </div>
             </form>

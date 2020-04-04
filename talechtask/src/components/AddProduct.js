@@ -1,61 +1,85 @@
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ProductContext } from "../ProductContext";
 import InputForm from "./InputForm";
 
 function AddProduct() {
     const [products, setProducts] = useContext(ProductContext);
-    const [date,setDate] = useState()
-    const initialState = {
-        name: "",
-        EAN: "",
-        type: "",
-        weight: "",
-        color: "",
-        quantity: "",
-        quantityHistory: [],
-        quantityHistoryDate: [],
-        price: "",
-        priceHistory: [],
-        priceHistoryDate: [],
-        active: true,
-        id: products.length + 1
-    };
+    const [date, setDate] = useState()
+    const [name, setName] = useState("");
+    const [EAN, setEAN] = useState("");
+    const [type, setType] = useState("");
+    const [weight, setWeight] = useState("");
+    const [color, setColor] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [price, setPrice] = useState("");
 
-    const [input, setInput] = useState(initialState);
-    const { name, EAN, type, weight, color, quantity, price} = input;
-
-    useEffect(()=> {
+    useEffect(() => {
         handleDate();
-    },[quantity,price])
+    }, [quantity, price])
 
     const handleDate = () => {
-        let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        let currentDate = new Date().toISOString().slice(0, 10)
         setDate(currentDate)
     }
 
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setInput({ ...input,
-            [name]: value,
-            quantityHistory:[quantity],
-            priceHistory:[price],
-            quantityHistoryDate:[date],
-            priceHistoryDate:[date]
-         });
+    const handleName = e => {
+        setName(e.currentTarget.value);
     }
 
-    const addProduct = product => {
-        setProducts([...products, product,]);
+    const handleEAN = e => {
+        setEAN(e.currentTarget.value);
+    }
+
+    const handleType = e => {
+        setType(e.currentTarget.value);
+    }
+
+    const handleWeight = e => {
+        setWeight(e.currentTarget.value);
+    }
+
+    const handleColor = e => {
+        setColor(e.currentTarget.value);
+    }
+
+    const handleQuantity = e => {
+        setQuantity(e.currentTarget.value);
+    }
+
+    const handlePrice = e => {
+        setPrice(e.currentTarget.value);
+    }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        setProducts([...products, {
+            name: name,
+            EAN: EAN,
+            type: type,
+            weight: weight,
+            color: color,
+            quantity: quantity,
+            quantityHistory: [quantity],
+            quantityHistoryDate: [date],
+            price: price,
+            priceHistory: [price],
+            priceHistoryDate: [date],
+            active: true,
+            id: products.length + 1
+        }]);
+        setName("");
+        setEAN("");
+        setType("")
+        setWeight("");
+        setColor("");
+        setQuantity("");
+        setPrice("");
     }
 
     return (
         <form
-        style={{width:"400px",margin:"auto"}} 
-        onSubmit={event => {
-            event.preventDefault();
-            addProduct(input);
-            setInput(initialState);
-        }}>
+            style={{ width: "400px", margin: "auto" }}
+            onSubmit={handleSubmit}>
             <InputForm
                 name={name}
                 EAN={EAN}
@@ -64,9 +88,15 @@ function AddProduct() {
                 color={color}
                 quantity={quantity}
                 price={price}
-                handleChange={handleChange}
+                handleName={handleName}
+                handleEAN={handleEAN}
+                handleType={handleType}
+                handleWeight={handleWeight}
+                handleColor={handleColor}
+                handleQuantity={handleQuantity}
+                handlePrice={handlePrice}
             />
-            <button type="submit" className="btn btn-success" style={{marginTop:"25px"}}>Add product</button>
+            <button type="submit" className="btn btn-success" style={{ marginTop: "25px" }}>Add product</button>
         </form>
     )
 }

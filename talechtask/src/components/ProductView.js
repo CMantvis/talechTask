@@ -13,7 +13,7 @@ function ProductView({ match }) {
 
     const renderProduct = () => {
         return matchingProduct.map(item => (
-            <div key={item.id} id="productDetail" className="col-2">
+            <div key={item.id} id="productDetail" className="col-2" style={{marginTop:"5px"}}>
                 <p>Name: {item.name}</p>
                 <p>EAN: {item.EAN}</p>
                 <p>Type: {item.type}</p>
@@ -38,7 +38,7 @@ function ProductView({ match }) {
                 onClick={() => setQuantityHistory(!quantityHistory)}>Quantity history
             </button>
 
-            <div className="row" style={{ margin: "40px" }}>
+            <div className="row" style={{ margin: "45px" }}>
                 {
                     productDetails &&
                     renderProduct()

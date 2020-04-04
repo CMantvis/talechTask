@@ -64,7 +64,7 @@ function ProductsList() {
                 <th>Name</th>
                 <th>EAN</th>
                 <th>Type</th>
-                <th>Weight</th>
+                <th>Weight (g)</th>
                 <th>Color</th>
                 <th >Quantity</th>
                 <th>Price $</th>
