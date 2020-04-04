@@ -3,10 +3,10 @@ import React from 'react';
 function InputForm(props) {
     return (
         <>
-            <label htmlFor="name" style={{marginTop:"40px"}}>Name</label>
+            <label htmlFor="name" style={{ marginTop: "40px" }}>Name</label>
             <input
                 type="text"
-                
+                required
                 placeholder="Product Name"
                 name="name"
                 id="name"
@@ -17,7 +17,7 @@ function InputForm(props) {
             <label htmlFor="EAN">EAN</label>
             <input
                 type="text"
-                
+                required
                 placeholder="Product EAN"
                 name="EAN"
                 id="EAN"
@@ -28,7 +28,7 @@ function InputForm(props) {
             <label htmlFor="type">Type</label>
             <input
                 type="text"
-                
+                required
                 placeholder="Product Type"
                 name="type"
                 id="type"
@@ -39,7 +39,7 @@ function InputForm(props) {
             <label htmlFor="weight">Weight</label>
             <input
                 type="number"
-                
+                required
                 placeholder="Product Weight"
                 name="weight"
                 id="weight"
@@ -50,7 +50,7 @@ function InputForm(props) {
             <label htmlFor="color">Color</label>
             <input
                 type="text"
-                
+                required
                 placeholder="Product Color"
                 name="color"
                 id="color"
@@ -61,7 +61,7 @@ function InputForm(props) {
             <label htmlFor="quantity">Quantity</label>
             <input
                 type="number"
-                
+                required
                 placeholder="Product Quantity"
                 name="quantity"
                 id="quantity"
@@ -72,7 +72,7 @@ function InputForm(props) {
             <label htmlFor="price">Price</label>
             <input
                 type="number"
-                
+                required
                 placeholder="Product Price"
                 name="price"
                 id="price"
@@ -80,6 +80,7 @@ function InputForm(props) {
                 onChange={props.handlePrice}
                 className="form-control"
             />
+
         </>
     )
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function ProductsList() {
     const [products, setProducts] = useContext(ProductContext);
-    
+
     const handleDelete = id => {
         setProducts([...products.filter(product => product.id !== id)]);
     }
@@ -21,9 +21,9 @@ function ProductsList() {
     const noProductStyle = {
         backgroundColor: "#DF1010",
     }
-    
+
     const btnStyle = {
-        width:"63px"
+        width: "63px"
     }
 
     const tableBody = () => {
@@ -39,19 +39,19 @@ function ProductsList() {
                 <td>
                     <input className="active"
                         type="checkbox"
-                        style={{height:"18px",width:"18px"}}
+                        style={{ height: "18px", width: "18px" }}
                         onChange={() => handleActive(product.id)}
                         checked={product.active && true} />
                 </td>
                 <td>
                     <div >
-                    <Link to={`/products/${product.id}`}>
-                        <button type="button" className="btn btn-secondary btn-sm" style={btnStyle}>VIEW</button>
+                        <Link to={`/products/${product.id}`}>
+                            <button type="button" className="btn btn-secondary btn-sm" style={btnStyle}>VIEW</button>
                         </Link>
-                    <Link to={`/products/${product.id}/edit`}>
-                        <button type="button" className="btn btn-primary btn-sm" style={btnStyle}>EDIT</button>
+                        <Link to={`/products/${product.id}/edit`}>
+                            <button type="button" className="btn btn-primary btn-sm" style={btnStyle}>EDIT</button>
                         </Link>
-                    <button onClick={() => handleDelete(product.id)} type="button"className="btn btn-danger btn-sm">DELETE</button>
+                        <button onClick={() => handleDelete(product.id)} type="button" className="btn btn-danger btn-sm">DELETE</button>
                     </div>
                 </td>
             </tr>
